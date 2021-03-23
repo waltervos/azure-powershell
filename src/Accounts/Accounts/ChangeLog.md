@@ -19,6 +19,13 @@
 -->
 ## Upcoming Release
 
+## Version 2.2.100
+* Implement CAE by adding handler to http pipeline
+* Improved error message when login is blocked by AAD
+* Improved error message when silent reauthentication failed
+* Enabled CAE for Get-AzTenant and Get-AzSubcription
+* Added test cases
+
 ## Version 2.2.7
 * Fixed incorrect warning message on Windows PowerShell [#14556]
 * Set Azure Environment variable `AzureKeyVaultServiceEndpointResourceId` according to the value of `AzureKeyVaultDnsSuffix` when discovering environment 

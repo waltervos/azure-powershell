@@ -12,21 +12,19 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
-using Azure.Core;
 using Azure.Identity;
+using System;
+using System.Text;
 
-namespace Microsoft.Azure.PowerShell.Authenticators.Factories
+namespace Microsoft.Azure.Commands.Common.Authentication
 {
-    public class AzureCredentialFactory
+    public static class AuthenticationFailedExceptionExtention
     {
-        public virtual TokenCredential CreateManagedIdentityCredential(string clientId)
+        public static AuthenticationFailedException FromExceptionAndAdditionalMessage(this AuthenticationFailedException e, string additonal)
         {
-            return new ManagedIdentityCredential(clientId);
-        }
-
-        public virtual TokenCredential CreateSharedTokenCacheCredentials(SharedTokenCacheCredentialOptions options)
-        {
-            return new SharedTokenCacheCredential(options);
+            var errorMessage = new StringBuilder(e.Message);
+            errorMessage.Append(Environment.NewLine).Append(additonal);
+            return new AuthenticationFailedException(errorMessage.ToString(), e);
         }
     }
 }

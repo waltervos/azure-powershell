@@ -17,6 +17,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Management.Automation;
 using System.Security;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -446,10 +447,16 @@ namespace Microsoft.Azure.Commands.Profile
                    }
                    catch (AuthenticationFailedException ex)
                    {
+                       string message = string.Empty;
                        if (IsUnableToOpenWebPageError(ex))
                        {
                            WriteWarning(Resources.InteractiveAuthNotSupported);
                            WriteDebug(ex.ToString());
+                       }
+                       else if (TryParseUnknownAuthenticationException(ex, out message))
+                       {
+                           WriteDebug(ex.ToString());
+                           throw ex.FromExceptionAndAdditionalMessage(message);
                        }
                        else
                        {
@@ -475,6 +482,21 @@ namespace Microsoft.Azure.Commands.Profile
         {
             return exception.InnerException is MsalClientException && ((MsalClientException)exception.InnerException)?.ErrorCode == MsalError.LinuxXdgOpen
                             || (exception.Message?.ToLower()?.Contains("unable to open a web page") ?? false);
+        }
+
+        private bool TryParseUnknownAuthenticationException(AuthenticationFailedException exception, out string message)
+        {
+
+            var innerException = exception?.InnerException as MsalServiceException;
+            bool isUnknownMsalServiceException = string.Equals(innerException?.ErrorCode, "access_denied", StringComparison.OrdinalIgnoreCase);
+            message = null;
+            if(isUnknownMsalServiceException)
+            {
+                StringBuilder messageBuilder = new StringBuilder(nameof(innerException.ErrorCode));
+                messageBuilder.Append(": ").Append(innerException.ErrorCode);
+                message = messageBuilder.ToString();
+            }
+            return isUnknownMsalServiceException;
         }
 
         private ConcurrentQueue<Task> _tasks = new ConcurrentQueue<Task>();
