@@ -12,7 +12,7 @@
 # RootModule = ''
 
 # Version number of this module.
-ModuleVersion = '2.2.7'
+ModuleVersion = '2.2.100'
 
 # Supported PSEditions
 CompatiblePSEditions = 'Core', 'Desktop'
@@ -143,8 +143,11 @@ PrivateData = @{
         # IconUri = ''
 
         # ReleaseNotes of this module
-        ReleaseNotes = '* Fixed incorrect warning message on Windows PowerShell [#14556]
-* Set Azure Environment variable ''AzureKeyVaultServiceEndpointResourceId'' according to the value of ''AzureKeyVaultDnsSuffix'' when discovering environment '
+        ReleaseNotes = '* Implement CAE by adding handler to http pipeline
+* Improved error message when login is blocked by AAD
+* Improved error message when silent reauthentication failed
+* Enabled CAE for Get-AzTenant and Get-AzSubcription
+* Added test cases'
 
         # Prerelease string of this module
         # Prerelease = ''
