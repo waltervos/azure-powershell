@@ -22,7 +22,7 @@ $ChangedFiles = Get-Content -Path "$PSScriptRoot\..\FilesChanged.txt"
 $ALL_MODULE = "ALL_MODULE"
 
 $SKIP_MODULES = @("Aks", "AppService", "Billing", "Compute", "ContainerInstance", "ContainerRegistry", "Dns", "DnsResolver", "KeyVault", "Media", "Monitor", "Network", "Resources", "ServiceBus", "Storage", "StreamAnalytics", "MySql", "PostgreSql", 
-"HanaOnAzure", "HealthBot", "ImageBuilder", "ImportExport", "KeyVault", "KubernetesConfiguration", "Kusto", "MariaDb", "Media", "Migrate", "Monitor", "MonitoringSolutions", "MySql", "Network", "Portal", "PostgreSql", "ProviderHub", "RedisEnterpriseCache", "ResourceGraph", "ResourceMover", "Resources", "ServiceBus", "SpringCloud", "Storage", "StreamAnalytics", "TimeSeriesInsights", "VMware", "Websites", "WindowsIotServices")
+"Functions", "HanaOnAzure", "HealthBot", "ImageBuilder", "ImportExport", "KeyVault", "KubernetesConfiguration", "Kusto", "MariaDb", "Media", "Migrate", "Monitor", "MonitoringSolutions", "MySql", "Network", "Portal", "PostgreSql", "ProviderHub", "RedisEnterpriseCache", "ResourceGraph", "ResourceMover", "Resources", "ServiceBus", "SpringCloud", "Storage", "StreamAnalytics", "TimeSeriesInsights", "VMware", "Websites", "WindowsIotServices")
 
 #Region Detect which module should be processed
 $ModuleSet = New-Object System.Collections.Generic.HashSet[string]
