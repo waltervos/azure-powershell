@@ -22,7 +22,7 @@ $ChangedFiles = Get-Content -Path "$PSScriptRoot\..\FilesChanged.txt"
 $ALL_MODULE = "ALL_MODULE"
 
 $SKIP_MODULES = @("Aks", "AppService", "Billing", "Compute", "ContainerInstance", "ContainerRegistry", "Dns", "DnsResolver", "KeyVault", "Media", "Monitor", "Network", "Resources", "ServiceBus", "Storage", "StreamAnalytics", "MySql", "PostgreSql", 
-"Confluent", "ConnectedKubernetes", "ConnectedMachine", "ContainerInstance", "ContainerRegistry", "CostManagement", "CustomProviders", "Databricks", "Datadog", "DataProtection", "DedicatedHsm", "DesktopVirtualization", "DigitalTwins", "DiskPool", "Dns", "DnsResolver", "Functions", "HanaOnAzure", "HealthBot", "ImageBuilder", "ImportExport", "KeyVault", "KubernetesConfiguration", "Kusto", "MariaDb", "Media", "Migrate", "Monitor", "MonitoringSolutions", "MySql", "Network", "Portal", "PostgreSql", "ProviderHub", "RedisEnterpriseCache", "ResourceGraph", "ResourceMover", "Resources", "ServiceBus", "SpringCloud", "Storage", "StreamAnalytics", "TimeSeriesInsights", "VMware", "Websites", "WindowsIotServices")
+"CustomProviders", "Databricks", "Datadog", "DataProtection", "DedicatedHsm", "DesktopVirtualization", "DigitalTwins", "DiskPool", "Dns", "DnsResolver", "Functions", "HanaOnAzure", "HealthBot", "ImageBuilder", "ImportExport", "KeyVault", "KubernetesConfiguration", "Kusto", "MariaDb", "Media", "Migrate", "Monitor", "MonitoringSolutions", "MySql", "Network", "Portal", "PostgreSql", "ProviderHub", "RedisEnterpriseCache", "ResourceGraph", "ResourceMover", "Resources", "ServiceBus", "SpringCloud", "Storage", "StreamAnalytics", "TimeSeriesInsights", "VMware", "Websites", "WindowsIotServices")
 
 #Region Detect which module should be processed
 $ModuleSet = New-Object System.Collections.Generic.HashSet[string]
