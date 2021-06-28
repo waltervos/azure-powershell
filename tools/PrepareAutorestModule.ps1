@@ -22,7 +22,7 @@ $ChangedFiles = Get-Content -Path "$PSScriptRoot\..\FilesChanged.txt"
 $ALL_MODULE = "ALL_MODULE"
 
 $SKIP_MODULES = @("Aks", "AppService", "Billing", "Compute", "ContainerInstance", "ContainerRegistry", "Dns", "DnsResolver", "KeyVault", "Media", "Monitor", "Network", "Resources", "ServiceBus", "Storage", "StreamAnalytics", "MySql", "PostgreSql", 
-"Functions", "RedisEnterpriseCache", "ResourceGraph", "ResourceMover", "Resources", "ServiceBus", "SpringCloud", "Storage", "StreamAnalytics", "TimeSeriesInsights", "VMware", "Websites", "WindowsIotServices")
+"Functions", "ProviderHub")
 
 #Region Detect which module should be processed
 $ModuleSet = New-Object System.Collections.Generic.HashSet[string]
@@ -84,11 +84,14 @@ foreach ($Module in $ModuleList)
         Throw "Cannot find Az.$Module.psd1 in $ModuleFolder."
     }
     Set-Location -Path $ModuleFolder
-    npx autorest
-    if ($Error[0] -ne "")
+    try
+    {
+        npx autorest
+    }
+    catch
     {
         Write-Host "Generating $currentModule with m3"
-        npx autorest --use:@autorest/powershell@2.1.401 --max-memory-size=8192 
+        npx autorest --use:@autorest/powershell@2.1.401 --max-memory-size=8192
     }
     ./build-module.ps1
     Move-Generation2Master -SourcePath "$PSScriptRoot\..\src\$Module\" -DestPath $TmpFolder
